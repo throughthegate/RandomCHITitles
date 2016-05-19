@@ -23,16 +23,18 @@ A **phrase** is made of an item in the form of `$topic $connector $topic`. (ex: 
 
 ### Post-Colon
 
-The title post-colon is made of an optional prelude, a verb, an optional ajective, a topic, a connector, and a context. This takes the form of `($prelude) $first_verb ($adj) $topic $connector $context`.
+The title post-colon is made of an optional prelude, a verb, an optional ajective, a topic, a connector, and a context. This takes the form of `($prelude) $first_verb ($adj) $topic $connector $context`, where parentheses indicate an optional variable.
 
 **Preludes** (`$prelude`) are introductory phrases to titles (ex: "Envisioning," "An Investigation of," or "Reflections on").
 
 **Verbs** (`$first_verb`) are the actions that our fictional researchers are doing (ex: "comparing", "exploring", or "prototyping").
 
-**Topics** (`$topic`) are objects, sites, or programs of study (ex: "Behavior", "Attitudes", "Infrastructure", "Data Structures", "Drawings").
+**Topics** (`$topic`) are objects, sites, or programs of study (ex: "Behaviors", "Attitudes", "Infrastructure", "Data Structures", "Drawings").
 
 **Adjectives** (`$adj`) are words that modify topics (ex: "User", "Digital", "Automated", "Human Centered").
 
 **Contexts** (`$context`) is the context in which a topic is studied (ex: "Everyday Life", "Novice Users", "Online Communities").
 
 **Connectors** (`$connector`) are phrases that connect topics to contexts (ex: "in", "surrounding", "in the case of").
+
+Putting that together, an example post-colon title might be: "(Reflections on) Prototyping (Digital) Attitudes in Online Communities" , where parentheses indicate an optional word or phrase.
