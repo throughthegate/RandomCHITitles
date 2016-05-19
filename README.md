@@ -4,7 +4,7 @@ The Random CHI Title Generator generates random-ish titles for CHI Papers. See i
 
 There's a lot of legacy stuff in here, early on I wanted to make something easy & fast to push out, so there's a lot of (not so well written) code in PHP and things in arrays, which was easy at first, and more things got built on top of that. Also it's not written in the most concise manner, nor in the most extendable way...
 
-Any contributions in adding additional content would be great! 
+Most words in the matrix come from a selection of CHI papers from 2014-2016, plus some other random words thrown in. Any contributions in adding additional content would be great! 
 
 ## Using matrix.php
 matrix.php does all the work of putting together a title, and the title is saved at the end in the variable `$full`. If you include matrix.php in another file, you should be able to call the variable `$full` and use the title stored there however you'd like!
