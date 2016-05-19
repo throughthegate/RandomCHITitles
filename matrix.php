@@ -1,10 +1,14 @@
 <?php
+/* ----------------------------------------
+Lots of legacy stuff in here, see readme for more. 
+Started off as a lot smaller thing, where arrays were
+easiest/fastest/cheapest way to get something off the 
+ground done, so things got built on top of that. 
 
-$pics = array("soundofmusic.gif", "batman.gif", "pokemon.gif", "spelling.gif", "andy.gif", "soccer.gif");
-	$num = rand(0, count($pics)-1);
-	$picUrl = $pics[$num];
+@richmondywong
+---------------------------------------- */
 
-$quote = array("This Tastes Good","Don't Waste My Time","Why");
+//Collection of words (See readme for descriptions)
 	
 $nouns = array("Mood", "Chair", "Light", "Action", "Effects", "Gator", "Bot", "Aggregator", "Algo", "Phone", "Meta", "Stress", "Multi", "Task", "Touch", "Visual", "Video", "Tasker", "Mind", "Viz", "Visual", "Picture", "Pictorial", "Diary", "Worker", "Frame","Strangers", "Robots", "Live", "Lives", "Alive", "Text", "Play", "Ludic", "Reflective", "Temporal","Table", "Think", "Thinker", "Semi", "Auto", "Super", "Surface", "Pad", "Button", "Click", "Thought", "Critical", "Happy", "Food", "Sizer", "Frankenstein", "Meet", "Meat", "Sugar", "Stapler", "Crayon", "Marks", "Godzilla", "Thynk", "Nimble", "Cans", "CHI", "Clippy", "Bandit", "Air", "Box", "Room", "Star", "Trek", "-ly", "Cam", "Cams", "Photo", "Private", "Secure", "Sweep", "Making", "Trouble", "Critical", "Fun", "Design", "Adversarial", "Go", "Slow", "Fast", "Pro", "Cal", "Matrix", "Wave", "Path", "Map", "App", "Lamp", "World", "Inter", "Vocal", "-izer", "Wiki", "Digi", "Digital", "Doc", "Prof", "Kid", "Baby", "Smartphone", "Fav", "Self","Eye", "Maker");  //choose 2
 
@@ -20,44 +24,50 @@ $connector = array("in", "for", "from", "Surrounding", "through", "in the Case o
 
 $context = array("Security Systems", "Privacy Practices", "Collective Practice", "Machine Aesthetics", "the Real World", "Crowdsourcing", "Everyday Life", "Computer Users", "Smartphone Owners", "Video-Mediated Collaboration", "Client-Side Participation", "Critical Design", "MultiTouch Interfaces", "Tabletop Interaction", "Medical Devices", "Citizen Science", "Data Analysis", "Social Media", "Online Risk", "Email", "Work-Life Balance", "Boundary Practices", "Voice Interfaces", "Wearables", "the Body", "Public Displays", "Games", "Older Adults", "Gender Stereotypes", "the Workplace", "Online Communities", "Computer Mediated Communication", "Online Dating", "Cyberbullying", "Language", "Social Writing", "Online Education", "Digital Fabrication", "3D Printing", "Bio-Sensors", "Robotics", "Industrial Settings", "the HCI Community", "the CHI Community", "the Design Community", "Ubiquitous Computing", "Design Practice", "Studies in the Field", "Lab Studies", "New Design Spaces", "Alternative Designs", "Visualizations", "Urban Spaces", "Rural Spaces", "the Home", "the Car", "the Kitchen", "Public Spaces", "Private Spaces", "Food", "Outer Space", "Star Trek", "Public Transport", "Airplanes", "Infrastructure Repair", "Destruction", "Coffee", "Star Wars", "Clippy", "Museums", "Hyperspace", "Sandbox Environments", "Fondue", "University Classes", "Fashion", "Sports", "Photoshop", "Collaboration", "Wearable Computing", "Wall Interfaces", "Design Fictions", "Digital Narratives", "Virtual Environments", "Digital Games", "News Feeds", "Wikipedia", "Facial Recognition", "Music Performance", "Developing Countries", "Drawing", "Walking", "Running", "System Performance", "Tablets", "Privacy Nudging", "Smart Homes", "History", "Time Travel", "Video Work", "Remote Collaboration", "Mixed-Reality Games", "Microwork", "Mechanical Turk", "Gradudate Student Labs", "Libraries", "Boats", "Public Policy", "Fair Use", "Privacy Concerns", "Broadway Musicals", "Amazon Mechanical Turk", "Food", "Infrastructures", "Tech Entrepreneurs", "ICTD", "Development", "Values in Design", "Research through Design", "Future Identity Technologies", "Field Sites", "the Field", "Traffic Systems", "Facebook", "Design Fiction", "Multi-Year Timespans", "Screens", "Smartphones", "Future Actions", "Policymaking", "Problem-Solving", "Natural Language", "Machine Learning", "Sports Viewing", "Social Media", "Online Sharing Behaviors", "Mobile Sharing Behaviours", "Unsupervised Learning", "Learning", "Security", "3D Printing", "Classrooms", "Ridesharing", "Parenting", "Social Movements", "Smartphone Applications", "Deception", "Data", "Discursive Practice", "Transportation", "Behaviour Change", "Rock Climbing", "Healthcare", "User Interactions", "End User License Agreements");
 
-//now do the work
-$title_parts = array_rand($nouns, 2);
 
-//returns array
+//returns random array item
 function rand_output($array){
 	$gen = rand(0, count($array)-1);
 	return $array[$gen];
 }
 
+//Some project titles are made of 2 different nouns, so return 2 different items from $nouns in an array
+$title_parts = array_rand($nouns, 2);
+
+//Setting up some random numbers for things in the decision tree
 $rand1 = rand(0,2); // 1/3 chance
 $rand2 = rand(0,1); // 1/2 chance
 $rand3 = rand(0,4); // 1/5 chance
 
-//choosing the 1st part before the colon
-if($rand3 >= 0 && $rand3 < 3){ // topic via topic
+//choosing the 1st part before the colon:
+if($rand3 >= 0 && $rand3 < 3){ // 3/5 chance "topic via topic"
 	$titleTopic = array_rand($topic, 2);
 	$title = $topic[$titleTopic[0]]." ".rand_output($connector)." ".$topic[$titleTopic[1]].":";   
 }
-else{ //product
+else{ // 2/5 chance you get a project name in form noun-noun
 	$title = $nouns[$title_parts[0]].$nouns[$title_parts[1]].":"; 
 }
-//prelude
+// 1/3 chance you get a $prelude in the title
 if($rand1 < 1){
 	$prelude_part = rand_output($prelude). " ";
 }
 else{
 	$prelude_part = "";
 }
+//select a 1st verb
 $verb_part = rand_output($first_verb);
+//1/2 chance we add in an extra adjective
 if($rand2 == 1){
 	$adj_part = rand_output($adj). " ";
 }else{
 	$adj_part = "";
 }
+//select a random item from the following arrays
 $topic_part = rand_output($topic);
 $connector_part = rand_output($connector);
 $context_part = rand_output($context);
 
+//put everything in order.
 $full = $title." ".$prelude_part.$verb_part." ".$adj_part.$topic_part." ".$connector_part." ".$context_part;
 
 ?>
